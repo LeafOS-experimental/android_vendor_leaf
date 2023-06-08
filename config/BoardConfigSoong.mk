@@ -54,7 +54,8 @@ SOONG_CONFIG_leafGlobalVars += \
     target_surfaceflinger_udfps_lib \
     target_trust_usb_control_path \
     target_trust_usb_control_enable \
-    target_trust_usb_control_disable
+    target_trust_usb_control_disable \
+    uses_gralloc1
 
 SOONG_CONFIG_NAMESPACES += leafQcomVars
 SOONG_CONFIG_leafQcomVars += \
@@ -80,6 +81,7 @@ SOONG_CONFIG_leafQcomVars_qti_vibrator_use_effect_stream := $(TARGET_QTI_VIBRATO
 SOONG_CONFIG_leafQcomVars_sdmcore_has_is_display_hw_available_func := $(TARGET_SDMCORE_HAS_IS_DISPLAY_HW_AVAILABLE_FUNC)
 SOONG_CONFIG_leafQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_leafQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
+SOONG_CONFIG_leafGlobalVars_uses_gralloc1 := $(TARGET_USES_GRALLOC1)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0
@@ -99,6 +101,7 @@ TARGET_SURFACEFLINGER_UDFPS_LIB ?= surfaceflinger_udfps_lib
 TARGET_TRUST_USB_CONTROL_PATH ?= /proc/sys/kernel/deny_new_usb
 TARGET_TRUST_USB_CONTROL_ENABLE ?= 1
 TARGET_TRUST_USB_CONTROL_DISABLE ?= 0
+TARGET_USES_GRALLOC1 ?= false
 
 # Soong value variables
 SOONG_CONFIG_leafGlobalVars_bootloader_message_offset := $(BOOTLOADER_MESSAGE_OFFSET)
