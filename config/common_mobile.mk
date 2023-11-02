@@ -24,7 +24,6 @@ $(call inherit-product, packages/overlays/Leaf/customizations.mk)
 # FaceUnlock
 ifneq ($(TARGET_FACE_UNLOCK_OPTOUT), true)
 PRODUCT_PACKAGES += \
-    FaceUnlockOverlay \
     LMOFaceUnlock
 
 PRODUCT_COPY_FILES += \
