@@ -25,7 +25,8 @@ PRODUCT_COPY_FILES += \
 # Apps
 PRODUCT_PACKAGES += \
     Etar \
-    ExactCalculator
+    ExactCalculator \
+    Glimpse
 
 ifeq ($(TARGET_BUILD_VARIANT),user)
 # Do not include art debug targets
