@@ -77,7 +77,8 @@ SOONG_CONFIG_leafQcomVars_qti_vibrator_use_effect_stream := $(TARGET_QTI_VIBRATO
 SOONG_CONFIG_leafQcomVars_sdmcore_has_is_display_hw_available_func := $(TARGET_SDMCORE_HAS_IS_DISPLAY_HW_AVAILABLE_FUNC)
 SOONG_CONFIG_leafQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_leafQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
-SOONG_CONFIG_leafQcomVars_uses_gralloc1 := $(TARGET_USES_GRALLOC1)
+
+SOONG_CONFIG_leafGlobalVars_uses_gralloc1 := $(TARGET_USES_GRALLOC1)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0

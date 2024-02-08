@@ -167,6 +167,23 @@ bootloader_message_offset {
     },
 }
 
+soong_config_module_type {
+    name: "uses_gralloc1",
+    module_type: "cc_defaults",
+    config_namespace: "leafGlobalVars",
+    bool_variables: ["uses_gralloc1"],
+    properties: ["export_cflags"],
+}
+
+uses_gralloc1 {
+    name: "uses_gralloc1_defaults",
+    soong_config_variables: {
+        uses_gralloc1: {
+            export_cflags: ["-DUSE_GRALLOC1"],
+        },
+    },
+}
+
 // QCOM specific config modules
 soong_config_module_type {
     name: "librmnetctl_pre_uplink",
@@ -332,23 +349,6 @@ surfaceflinger_udfps_lib {
         target_surfaceflinger_udfps_lib: {
             cppflags: ["-DTARGET_PROVIDES_UDFPS_LIB"],
             whole_static_libs: ["%s"],
-        },
-    },
-}
-
-soong_config_module_type {
-    name: "uses_gralloc1",
-    module_type: "cc_defaults",
-    config_namespace: "leafQcomVars",
-    bool_variables: ["uses_gralloc1"],
-    properties: ["export_cflags"],
-}
-
-uses_gralloc1 {
-    name: "uses_gralloc1_defaults",
-    soong_config_variables: {
-        uses_gralloc1: {
-            export_cflags: ["-DUSE_GRALLOC1"],
         },
     },
 }
