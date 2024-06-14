@@ -467,6 +467,8 @@ if __name__ == '__main__':
 
         if 'anonymous http' in item['fetch']:
             method = 'anonymous http'
+        elif 'http' in item['fetch']:
+            method = 'http'
         else:
             method = 'ssh'
 
