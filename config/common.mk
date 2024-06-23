@@ -65,6 +65,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
     Launcher3QuickStep
 
+# DSU
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.sys.fflag.override.settings_dynamic_system.list=https://get.leafos.org/dsu/
+
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
