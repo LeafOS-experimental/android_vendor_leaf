@@ -61,6 +61,7 @@ SOONG_CONFIG_NAMESPACES += leafQcomVars
 SOONG_CONFIG_leafQcomVars += \
     gralloc_handle_has_custom_content_md_reserved_size \
     gralloc_handle_has_reserved_size \
+    no_fm_firmware \
     qti_vibrator_effect_lib \
     qti_vibrator_use_effect_stream \
     sdmcore_has_is_display_hw_available_func \
@@ -77,6 +78,7 @@ endif
 SOONG_CONFIG_leafQcomVars_gralloc_handle_has_custom_content_md_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE)
 SOONG_CONFIG_leafQcomVars_gralloc_handle_has_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE)
 SOONG_CONFIG_leafQcomVars_gralloc_handle_has_ubwcp_format := $(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT)
+SOONG_CONFIG_leafQcomVars_no_fm_firmware := $(TARGET_QCOM_NO_FM_FIRMWARE)
 SOONG_CONFIG_leafQcomVars_qti_vibrator_use_effect_stream := $(TARGET_QTI_VIBRATOR_USE_EFFECT_STREAM)
 SOONG_CONFIG_leafQcomVars_sdmcore_has_is_display_hw_available_func := $(TARGET_SDMCORE_HAS_IS_DISPLAY_HW_AVAILABLE_FUNC)
 SOONG_CONFIG_leafQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
@@ -125,3 +127,18 @@ else
 SOONG_CONFIG_leafQcomVars_qcom_display_headers_namespace := $(QCOM_SOONG_NAMESPACE)/display
 endif
 SOONG_CONFIG_leafQcomVars_qti_vibrator_effect_lib := $(TARGET_QTI_VIBRATOR_EFFECT_LIB)
+
+# libfmjni
+ifeq ($(BOARD_HAVE_QCOM_FM),true)
+    PRODUCT_SOONG_NAMESPACES += \
+        vendor/qcom/opensource/libfmjni
+else ifeq ($(BOARD_HAVE_BCM_FM),true)
+    PRODUCT_SOONG_NAMESPACES += \
+        hardware/broadcom/fm
+else ifeq ($(BOARD_HAVE_SLSI_FM),true)
+    PRODUCT_SOONG_NAMESPACES += \
+        hardware/samsung_slsi/fm
+else ifneq ($(BOARD_HAVE_MTK_FM),true)
+    PRODUCT_SOONG_NAMESPACES += \
+        packages/apps/FMRadio/jni/fmr
+endif
