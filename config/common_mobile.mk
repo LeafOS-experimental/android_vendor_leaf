@@ -26,4 +26,5 @@ PRODUCT_PACKAGES += \
 
 # SystemUI plugins
 PRODUCT_PACKAGES += \
+    AvatarPicker \
     QuickAccessWallet
