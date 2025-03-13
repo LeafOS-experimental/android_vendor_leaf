@@ -31,6 +31,41 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
+leaf_generator {
+    name: "generated_kernel_includes",
+
+    // The headers make command
+    cmd: "$(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install && vendor/leaf/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
+
+    // Directories that can be imported by a cc_* module generated_headers property
+    export_include_dirs: [
+        "usr/audio/include/uapi",
+        "usr/include",
+        "usr/include/audio",
+        "usr/include/audio/include/uapi",
+        "usr/techpack/audio/include",
+    ],
+
+    // Sources for dependency tracking
+    dep_root: "$(TARGET_KERNEL_SOURCE)",
+    dep_files: [
+        "Makefile",
+        "include/**/*",
+        "arch/$(KERNEL_ARCH)/include/**/*",
+        "techpack/audio/include/**/*",
+    ],
+}
+
+<<<<<<< HEAD
+genrule_defaults {
+    name: "7z_genrule_defaults",
+    tools: ["7z"],
+    cmd: "$(location 7z) e -so $$(echo $(in) | cut -f1 -d ' ') > $(out)",
+}
+
+cc_library_headers {
+    name: "generated_kernel_headers",
+=======
 bootstrap_go_package {
     name: "soong-lineage-mkdir",
     pkgPath: "lineage/soong/mkdir",
@@ -47,10 +82,13 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-genrule_defaults {
-    name: "7z_genrule_defaults",
-    tools: ["7z"],
-    cmd: "$(location 7z) e -so $$(echo $(in) | cut -f1 -d ' ') > $(out)",
+cc_defaults {
+    name: "generated_kernel_header_defaults",
+>>>>>>> e0ff29e915 (soong: Add mkdir module)
+    generated_headers: ["generated_kernel_includes"],
+    export_generated_headers: ["generated_kernel_includes"],
+    vendor_available: true,
+    recovery_available: true,
 }
 
 soong_config_module_type {
@@ -131,33 +169,6 @@ health_charging_control {
         },
         target_health_charging_control_deadline_path: {
             cppflags: ["-DHEALTH_CHARGING_CONTROL_DEADLINE_PATH=\"%s\""],
-        },
-    },
-}
-
-soong_config_module_type {
-    name: "powershare",
-    module_type: "cc_defaults",
-    config_namespace: "leafGlobalVars",
-    value_variables: [
-        "target_powershare_path",
-        "target_powershare_enabled",
-        "target_powershare_disabled",
-    ],
-    properties: ["cppflags"],
-}
-
-powershare {
-    name: "powershare_defaults",
-    soong_config_variables: {
-        target_powershare_path: {
-            cppflags: ["-DPOWERSHARE_PATH=\"%s\""],
-        },
-        target_powershare_enabled: {
-            cppflags: ["-DPOWERSHARE_ENABLED=\"%s\""],
-        },
-        target_powershare_disabled: {
-            cppflags: ["-DPOWERSHARE_DISABLED=\"%s\""],
         },
     },
 }
