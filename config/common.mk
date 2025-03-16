@@ -82,9 +82,9 @@ endif
 
 # Leaf packages
 PRODUCT_PACKAGES += \
-    LeafSetupWizard \
     Seedvault \
-    Updater
+#    LeafSetupWizard \
+#    Updater
 
 # OTA
 PRODUCT_EXTRA_RECOVERY_KEYS += \
