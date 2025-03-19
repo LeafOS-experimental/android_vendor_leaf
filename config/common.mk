@@ -25,9 +25,9 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 
 # Apps
 PRODUCT_PACKAGES += \
-    Etar \
     ExactCalculator \
     Glimpse
+#    Etar \
 
 # Bootanimation
 TARGET_SCREEN_WIDTH ?= 1080
