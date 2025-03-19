@@ -52,8 +52,8 @@ PRODUCT_PACKAGES += \
 # Customization
 PRODUCT_PACKAGES += \
     LeafBackgrounds \
-    ThemePickerLeaf \
     DefaultThemesStub
+#    ThemePickerLeaf
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
